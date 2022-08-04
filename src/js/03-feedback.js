@@ -7,12 +7,8 @@ const textarea = document.querySelector('textarea');
 
 const STORAGE_KEY = 'feedback-form-state';
 
-form.addEventListener(
-    'input', throttle((event) => {
-      const objInput = {
-        email: form.elements.email.value,
-        message: form.elements.message.value,
-      };
+form.addEventListener('input', throttle((event) => {
+      const objInput = { email: form.elements.email.value, message: form.elements.message.value };
       localStorage.setItem('feedback-form-state', JSON.stringify(objInput));
     }, 500)
   );
@@ -27,12 +23,12 @@ form.addEventListener(
 });
 
 
-const savedMessage = JSON.parse(localStorage.getItem(STORAGE_KEY));
+const savedText = JSON.parse(localStorage.getItem(STORAGE_KEY));
 
-const fillForm = () => {
-  if (savedMessage) {
+const dataForm = () => {
+  if (savedText !== null) {
     input.value = parseStorage.email;
-    textArea.value = parseStorage.message;
-  }
+    textarea.value = parseStorage.message;
+  };
 };
-fillForm();
+dataForm();
